@@ -305,25 +305,49 @@ export default function Dashboard() {
                   )}
                 </div>
                 
-                <button 
-                  onClick={() => navigate(`/trip/${trip.id}`)} 
-                  style={{ 
-                    width: '100%', 
-                    padding: '12px', 
-                    marginTop: '15px', 
-                    backgroundColor: 'transparent',
-                    border: '2px solid var(--accent)',
-                    color: 'var(--accent)', 
-                    borderRadius: '12px', 
-                    cursor: 'pointer', 
-                    fontWeight: 'bold',
-                    transition: 'all 0.2s'
-                  }}
-                  onMouseOver={(e) => { e.target.style.backgroundColor = 'var(--accent)'; e.target.style.color = 'white'; }}
-                  onMouseOut={(e) => { e.target.style.backgroundColor = 'transparent'; e.target.style.color = 'var(--accent)'; }}
-                >
-                  Open Trip details
-                </button>
+                <div style={{ display: 'flex', gap: '10px', marginTop: '15px' }}>
+                  <button 
+                    onClick={() => navigate(`/trip/${trip.id}`)} 
+                    style={{ 
+                      flex: 1, 
+                      padding: '10px', 
+                      backgroundColor: 'transparent',
+                      border: '2px solid var(--accent)',
+                      color: 'var(--accent)', 
+                      borderRadius: '12px', 
+                      cursor: 'pointer', 
+                      fontWeight: 'bold',
+                      fontSize: '13px',
+                      transition: 'all 0.2s'
+                    }}
+                    onMouseOver={(e) => { e.target.style.backgroundColor = 'var(--accent)'; e.target.style.color = 'white'; }}
+                    onMouseOut={(e) => { e.target.style.backgroundColor = 'transparent'; e.target.style.color = 'var(--accent)'; }}
+                  >
+                    Open Details
+                  </button>
+                  <button 
+                    onClick={() => navigate(`/trip/${trip.id}?tab=map`)} 
+                    style={{ 
+                      padding: '10px 14px', 
+                      backgroundColor: 'var(--code-bg)',
+                      border: '1px solid var(--border)',
+                      color: 'var(--text-h)', 
+                      borderRadius: '12px', 
+                      cursor: 'pointer', 
+                      fontWeight: 'bold',
+                      fontSize: '13px',
+                      transition: 'all 0.2s',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '4px'
+                    }}
+                    onMouseOver={(e) => { e.target.style.borderColor = 'var(--accent)'; e.target.style.color = 'var(--accent)'; }}
+                    onMouseOut={(e) => { e.target.style.borderColor = 'var(--border)'; e.target.style.color = 'var(--text-h)'; }}
+                    title="Live Location Sharing & Destinations Map"
+                  >
+                    Map 📍
+                  </button>
+                </div>
               </div>
             );
           })

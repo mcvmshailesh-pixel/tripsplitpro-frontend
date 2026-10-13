@@ -1,13 +1,15 @@
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
+import TripLocationMap from '../components/TripLocationMap';
 
 export default function TripDetails() {
   const { id } = useParams(); 
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   // Tab state
-  const [activeTab, setActiveTab] = useState('expenses'); // 'expenses', 'advances', 'pettycash', 'reports', 'settings'
+  const [activeTab, setActiveTab] = useState(searchParams.get('tab') || 'expenses'); // 'expenses', 'advances', 'pettycash', 'reports', 'settings'
 
   // Backend data states
   const [trip, setTrip] = useState(null);
@@ -581,6 +583,7 @@ export default function TripDetails() {
           { id: 'advances', label: 'Advances 💳' },
           { id: 'pettycash', label: 'Petty Cash 💰' },
           { id: 'reports', label: 'Reports 📊' },
+          { id: 'map', label: 'Map & Live Locations 📍' },
           { id: 'settings', label: 'Trip Settings ⚙️' }
         ].map(t => (
           <button
@@ -1529,6 +1532,17 @@ export default function TripDetails() {
             )}
           </form>
         </div>
+      )}
+
+      {/* ============================================================== */}
+      {/* 5. MAP & LIVE LOCATIONS TAB */}
+      {/* ============================================================== */}
+      {activeTab === 'map' && (
+        <TripLocationMap
+          trip={trip}
+          currentUser={currentUser}
+          onRefreshTrip={fetchAllTripDetails}
+        />
       )}
     </div>
   );
